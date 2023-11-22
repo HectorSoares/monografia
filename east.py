@@ -69,7 +69,7 @@ def prepareImage(img):
         text = best_path(scores, char_set)
         print(text.strip())
         cv2.rectangle(img_copy, (x1, y1), (x2, y2), (0, 255, 0), 2)
-        cv2.putText(img_copy, text.strip(), (x1,y1-2), cv2.FONT_HERSHEY_COMPLEX, 0.7, (0,0,255),2)
+        cv2.putText(img_copy, text.strip(), (x1,y1-2), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,0,255),2)
     return img_copy
     
 

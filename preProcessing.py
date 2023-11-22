@@ -46,3 +46,29 @@ def removeSkew(img):
     angle = returnSkewAngle(max_cnt)
     return rotateImage(img, angle)
 
+def sharpImage(img):
+    kernel = np.array([[0,-1,0],[-1, 5,-1],[0, -1, 0]])
+    image_sharp = cv2.filter2D(src=img, ddepth=-1, kernel=kernel)
+    return image_sharp
+
+def addContrast(img):
+    new_img = np.zeros(img.shape, img.dtype)
+    alpha = 1.1 # Simple contrast control
+    beta = 0    # Simple brightness control
+    # Initialize values
+    print(' Basic Linear Transforms ')
+    print('-------------------------')
+    # Do the operation new_img(i,j) = alpha*img(i,j) + beta
+    # Instead of these 'for' loops we could have used simply:
+    new_img = cv2.convertScaleAbs(img, alpha=alpha, beta=beta)
+    # but we wanted to show you how to access the pixels :)
+    # for y in range(img.shape[0]):
+    #     for x in range(img.shape[1]):
+    #         for c in range(img.shape[2]):
+    #             new_img[y,x,c] = np.clip(alpha*img[y,x,c] + beta, 0, 255)
+    
+    cv2.imshow('Original Image', img)
+    cv2.imshow('New img', new_img)
+    cv2.waitKey()
+    # Wait until user press some key
+    return new_img
